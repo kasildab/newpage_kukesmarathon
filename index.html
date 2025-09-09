@@ -1,857 +1,437 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Half Marathon - RunNation</title>
+    <title>Kukës Marathon</title>
+    <link rel="icon" type="image/png" href="icona.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Base Styles */
-        :root {
-            --primary: #e63946;
-            --secondary: #1d3557;
-            --light: #f1faee;
-            --accent: #a8dadc;
-            --dark: #457b9d;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--secondary);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            background: var(--primary);
-            color: white;
-            border-radius: 30px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 14px;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background: #c1121f;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: var(--secondary);
-        }
-
-        .btn-secondary:hover {
-            background: #14213d;
-        }
-
-        /* Header Styles */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            position: relative;
-        }
-
-        /* Logo Styles */
-        .logo {
-            display: flex;
-            align-items: center;
-            z-index: 101;
-        }
-
-        .logo-image {
-            height: 50px;
-            width: auto;
-            transition: all 0.3s ease;
-        }
-
-        .nav-dropdown {
-            position: relative;
-        }
-
-        .nav-dropdown>.nav-link {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .nav-dropdown>.nav-link i {
-            font-size: 12px;
-            transition: transform 0.3s;
-        }
-
-        .nav-dropdown:hover>.nav-link i {
-            transform: rotate(180deg);
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            border-radius: 0 0 8px 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            padding: 10px 0;
-            min-width: 200px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s;
-            z-index: 101;
-        }
-
-        .nav-dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 8px 20px;
-            color: #333;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-
-        .dropdown-menu a:hover {
-            background: rgba(0, 0, 0, 0.05);
-            color: var(--primary);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            transition: all 0.5s ease;
-            align-items: center;
-        }
-
-        .nav-links li {
-            margin-left: 30px;
-        }
-
-        .nav-links a {
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: white;
-            overflow: hidden;
-        }
-
-        .hero-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .hero-background img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
-            z-index: 0;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Race Details Section */
-        .race-details {
-            padding: 80px 0;
-        }
-
-        .details-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start;
-        }
-
-        .race-info {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .info-item {
-            display: flex;
-            margin-bottom: 25px;
-            align-items: flex-start;
-        }
-
-        .info-icon {
-            background: var(--accent);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            flex-shrink: 0;
-            color: var(--secondary);
-            font-size: 20px;
-        }
-
-        .info-content h3 {
-            margin-bottom: 5px;
-            color: var(--secondary);
-        }
-
-        .info-content p {
-            color: #666;
-        }
-
-        /* Course Map Section */
-        .course-map {
-            padding: 60px 0;
-            background: var(--light);
-        }
-
-        .map-container {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .map-image {
-            width: 100%;
-            height: 400px;
-            background: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-size: 18px;
-        }
-
-        .map-details {
-            padding: 25px;
-        }
-
-        .map-details h3 {
-            color: var(--secondary);
-            margin-bottom: 15px;
-        }
-
-        .elevation-profile {
-            margin-top: 25px;
-        }
-
-        .elevation-chart {
-            height: 100px;
-            background: linear-gradient(to right, #e0f7fa, #81d4fa, #4fc3f7, #29b6f6, #03a9f4);
-            border-radius: 5px;
-            margin-top: 10px;
-            position: relative;
-        }
-
-        .elevation-markers {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-            font-size: 12px;
-            color: #666;
-        }
-
-        /* Registration Section */
-        .registration {
-            padding: 80px 0;
-            background: white;
-        }
-
-        .registration-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .pricing-table {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-
-        .pricing-tier {
-            background: var(--light);
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
-
-        .pricing-tier:hover {
-            transform: translateY(-10px);
-        }
-
-        .pricing-tier.popular {
-            background: var(--secondary);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pricing-tier.popular::before {
-            content: 'MOST POPULAR';
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: var(--primary);
-            color: white;
-            font-size: 10px;
-            padding: 5px 10px;
-            font-weight: bold;
-        }
-
-        .tier-name {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: var(--secondary);
-        }
-
-        .pricing-tier.popular .tier-name {
-            color: white;
-        }
-
-        .tier-price {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-
-        .pricing-tier.popular .tier-price {
-            color: white;
-        }
-
-        .tier-features {
-            list-style: none;
-            margin-bottom: 25px;
-        }
-
-        .tier-features li {
-            margin-bottom: 10px;
-            color: #666;
-        }
-
-        .pricing-tier.popular .tier-features li {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            padding: 80px 0;
-            background: var(--light);
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: white;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .faq-question {
-            padding: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            color: var(--secondary);
-        }
-
-        .faq-answer {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 200px;
-            padding: 0 20px 20px;
-        }
-
-        /* Footer */
-        footer {
-            background: #222;
-            color: white;
-            padding: 60px 0 20px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-column h3 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 18px;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: #aaa;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #aaa;
-            font-size: 14px;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 968px) {
-            .details-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .hero p {
-                font-size: 18px;
-            }
-            
-            .pricing-table {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 30px;
-            }
-            
-            .hero p {
-                font-size: 16px;
-            }
-            
-            .info-item {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .info-icon {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- Header -->
     <header>
         <div class="container">
             <nav>
                 <a href="index.html" class="logo">
-                    <img src="https://via.placeholder.com/200x60/e63946/ffffff?text=RunNation" alt="RunNation Logo" class="logo-image">
+                    <img src="icona.png" alt="RunNation Logo" class="logo-image">
                 </a>
                 <ul class="nav-links">
                     <li class="nav-dropdown">
                         <a href="events.html" class="nav-link">The Races <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
-                            <a href="half-marathon.html">Half Marathon</a>
-                            <a href="10k.html">10K Run</a>
+                            <a href="half.html">Half Marathon</a>
+                            <a href="10km.html">10K Run</a>
                         </div>
                     </li>
                     <li><a href="training.html" class="nav-link">Sponsors</a></li>
                     <li><a href="charities.html" class="nav-link">Volunteers</a></li>
                     <li><a href="results.html" class="nav-link">Schedule of Events</a></li>
                     <li><a href="about.html" class="nav-link">Results</a></li>
+                    <li class="language-selector">
+                        <button class="language-btn">
+                            <img src="https://flagcdn.com/w20/gb.png" alt="English">
+                            English
+                        </button>
+                        <div class="language-dropdown">
+                            <a href="#" data-lang="en">
+                                <img src="https://flagcdn.com/w20/gb.png" alt="English">
+                                English
+                            </a>
+                            <a href="#" data-lang="es">
+                                <img src="https://flagcdn.com/w20/es.png" alt="Spanish">
+                                Español
+                            </a>
+                            <a href="#" data-lang="fr">
+                                <img src="https://flagcdn.com/w20/fr.png" alt="French">
+                                Français
+                            </a>
+                            <a href="#" data-lang="de">
+                                <img src="https://flagcdn.com/w20/de.png" alt="German">
+                                Deutsch
+                            </a>
+                            <a href="#" data-lang="it">
+                                <img src="https://flagcdn.com/w20/it.png" alt="Italian">
+                                Italiano
+                            </a>
+                        </div>
+                    </li>
                 </ul>
+                <div class="hamburger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-background">
-            <img src="https://images.unsplash.com/photo-1594882645126-14020914d58d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1485&q=80" alt="Half Marathon">
+        <div class="hero-background" id="heroBackground">
+            <!-- Background content will be dynamically inserted here -->
         </div>
         <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content">
-                <h1>Kukës Half Marathon</h1>
-                <p>Challenge yourself with 21.1 km through the stunning landscapes of the Albanian Alps</p>
-                <a href="#registration" class="btn">Register Now</a>
+                <h1 data-translate="hero_title">Kukës Half Marathon</h1>
+                <p data-translate="hero_subtitle">Join us for the most spectacular running event in the Albanian Alps.
+                    Experience breathtaking scenery, challenging routes, and unforgettable memories.</p>
+                <div class="hero-buttons">
+                    <div class="calendar-dropdown">
+                        <button class="btn btn-secondary calendar-btn">
+                            <i class="far fa-calendar-alt"></i> <span data-translate="add_to_calendar">Add to
+                                Calendar</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="calendar-options">
+                            <a href="#" class="calendar-option" data-calendar="google">
+                                <i class="fab fa-google"></i> <span data-translate="google_calendar">Google
+                                    Calendar</span>
+                            </a>
+                            <a href="#" class="calendar-option" data-calendar="apple">
+                                <i class="fab fa-apple"></i> <span data-translate="apple_calendar">Apple Calendar</span>
+                            </a>
+                            <a href="#" class="calendar-option" data-calendar="outlook">
+                                <i class="fas fa-envelope"></i> <span data-translate="outlook">Outlook</span>
+                            </a>
+                            <a href="#" class="calendar-option" data-calendar="ics">
+                                <i class="fas fa-download"></i> <span data-translate="download_ics">Download .ics
+                                    File</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-secondary" style="background-color:#c1121f"
+                        data-translate="register_now">Register Now</a>
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- Race Details Section -->
-    <section class="race-details">
+    <!-- The Races Section -->
+    <section id="races" class="section-padding bg-light">
         <div class="container">
-            <div class="details-container">
-                <div class="race-info">
-                    <h2>Race Details</h2>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-route"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3>Distance</h3>
-                            <p>21.1 kilometers (13.1 miles)</p>
-                        </div>
+            <div class="section-title">
+                <h2>The Races</h2>
+            </div>
+
+            <div class="races-container">
+                <!-- Half Marathon Card -->
+                <div class="race-card">
+                    <div class="race-img"
+                        style="background-image: url('https://prapaskena.com/wp-content/uploads/2025/05/a97afc43-5dcb-44a0-817b-f1cb2251de91.jpeg');">
+                        <h3>Half Marathon</h3>
                     </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-calendar-day"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3>Date</h3>
-                            <p>June 16, 2026</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3>Start Time</h3>
-                            <p>7:30 AM</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3>Location</h3>
-                            <p>Kukës City Center, Albania</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-mountain"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3>Elevation Gain</h3>
-                            <p>Approximately 250 meters</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-stopwatch"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3>Time Limit</h3>
-                            <p>3.5 hours</p>
-                        </div>
+                    <div class="race-content">
+                        <p>21.1 km perfect for runners looking for a serious challenge but not ready for the full
+                            distance.</p>
+                        <a href="#" class="btn">Learn More</a>
                     </div>
                 </div>
 
-                <div class="race-info">
-                    <h2>What's Included</h2>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-tshirt"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3>Race Shirt</h3>
-                            <p>High-quality technical t-shirt</p>
-                        </div>
+                <!-- 10K Run Card -->
+                <div class="race-card">
+                    <div class="race-img"
+                        style="background-image: url('https://scontent.ftia1-1.fna.fbcdn.net/v/t51.75761-15/500974321_17870555976368973_2195596803960732704_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFCbpqlHbL-hrtOtG6owXIEVZicNkfSCEZVmJw2R9IIRtDeAK5Bn-lofjAKyfmRbjNMfYu3NtzcG2pN3-zOh8GT&_nc_ohc=JTyF301EHNgQ7kNvwGSOvIH&_nc_oc=AdmU0xXyM7iH2ofcXkqjW5yhgbFCa4XewkKU-dY_zVetBWoBZMf1UsrM_5FyCAheuZA&_nc_zt=23&_nc_ht=scontent.ftia1-1.fna&_nc_gid=fFlfyrItKWEz9x72UK0ndQ&oh=00_AfYDtd_LnnwbJDhuNK7Za7FCocNktV0iKviFNKzfA_h6XQ&oe=68C5E696');">
+                        <h3>10K Run</h3>
                     </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-medal"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3>Finisher Medal</h3>
-                            <p>Custom designed medal for all finishers</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-water"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3>Aid Stations</h3>
-                            <p>6 well-stocked aid stations along the course</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-utensils"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3>Post-Race Food</h3>
-                            <p>Refreshments and meal after the race</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-camera"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3>Race Photos</h3>
-                            <p>Free digital race photos</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3>Awards</h3>
-                            <p>Awards for top finishers in each category</p>
-                        </div>
+                    <div class="race-content">
+                        <p>A great option for beginners or those looking for a shorter but still rewarding race
+                            experience.</p>
+                        <a href="#" class="btn">Learn More</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Course Map Section -->
-    <section class="course-map">
+    <!-- Sponsors Section -->
+    <section id="sponsors" class="section-padding">
         <div class="container">
-            <h2>Course Map & Elevation</h2>
-            <div class="map-container">
-                <div class="map-image">
-                    <p>Course Map Will Be Available Soon</p>
+            <div class="section-title">
+                <h2 data-translate="our_sponsors">Our Sponsors</h2>
+                <p data-translate="sponsors_description">We're proud to partner with these outstanding organizations
+                    that help make our events possible.</p>
+            </div>
+
+            <div class="sponsor-grid">
+                <div class="sponsor-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Stema_e_Bashkis%C3%AB_Kuk%C3%ABs.svg/1858px-Stema_e_Bashkis%C3%AB_Kuk%C3%ABs.svg.png"
+                        alt="Premium Sponsor">
+                    <h3>Premium Partner</h3>
+                    <p>Our top-tier sponsors providing exceptional support</p>
                 </div>
-                <div class="map-details">
-                    <h3>Course Description</h3>
-                    <p>The Half Marathon course takes you through the beautiful landscapes surrounding Kukës. Starting in the city center, the route follows paved roads through picturesque villages, with stunning views of the Albanian Alps. The course is challenging but rewarding with a mix of flat sections and rolling hills.</p>
-                    
-                    <div class="elevation-profile">
-                        <h3>Elevation Profile</h3>
-                        <div class="elevation-chart"></div>
-                        <div class="elevation-markers">
-                            <span>Start: 350m</span>
-                            <span>Highest Point: 600m</span>
-                            <span>Finish: 400m</span>
-                        </div>
-                    </div>
+
+                <div class="sponsor-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoOAaMyP3lUyNS-QEqX944kCeZVLuDhcc1OA&s"
+                        alt="Gold Sponsor">
+                    <h3>Gold Partner</h3>
+                    <p>Dedicated partners helping us deliver excellent events</p>
                 </div>
+
+                <div class="sponsor-card">
+                    <img src="https://goldeneagle-ks.com/wp-content/uploads/2023/12/refreshing_taste_tab.jpg"
+                        alt="Silver Sponsor">
+                    <h3>Silver Partner</h3>
+                    <p>Valuable supporters of our running community</p>
+                </div>
+
+                <div class="sponsor-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqD4KM6h8PHlzPCebJNRNbqskDJyPBCw7sOA&s"
+                        alt="Community Partner">
+                    <h3>Community Partner</h3>
+                    <p>Local organizations that help us connect with runners</p>
+                </div>
+            </div>
+
+            <div class="become-sponsor">
+                <h3>Interested in becoming a sponsor?</h3>
+                <a href="#" class="btn btn-secondary" data-translate="sponsor_opportunities">Learn About
+                    Opportunities</a>
             </div>
         </div>
     </section>
 
-    <!-- Registration Section -->
-    <section class="registration" id="registration">
+    <!-- Volunteers Section -->
+    <section id="volunteers" class="section-padding bg-light">
         <div class="container">
-            <div class="registration-container">
-                <h2>Registration</h2>
-                <p>Secure your spot in the Kukës Half Marathon. Prices increase as the race date approaches, so register early!</p>
-                
-                <div class="pricing-table">
-                    <div class="pricing-tier">
-                        <h3 class="tier-name">Early Bird</h3>
-                        <div class="tier-price">€35</div>
-                        <ul class="tier-features">
-                            <li><i class="fas fa-check"></i> Until Dec 31, 2025</li>
-                            <li><i class="fas fa-check"></i> Race Entry</li>
-                            <li><i class="fas fa-check"></i> Race Shirt</li>
-                            <li><i class="fas fa-check"></i> Finisher Medal</li>
+            <div class="section-title">
+                <h2 data-translate="volunteers">Volunteers</h2>
+                <p data-translate="volunteers_description">Our events wouldn't be possible without the dedication of our
+                    amazing volunteers.</p>
+            </div>
+
+            <div class="volunteer-grid">
+                <div class="volunteer-card">
+                    <div class="volunteer-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Course Marshals</h3>
+                    <p>Help guide runners along the course and ensure their safety</p>
+                </div>
+
+                <div class="volunteer-card">
+                    <div class="volunteer-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>Water Stations</h3>
+                    <p>Keep runners hydrated at stations along the route</p>
+                </div>
+
+                <div class="volunteer-card">
+                    <div class="volunteer-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Finish Line</h3>
+                    <p>Assist with timing, medals, and post-race support</p>
+                </div>
+
+                <div class="volunteer-card">
+                    <div class="volunteer-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Refreshments</h3>
+                    <p>Help with post-race food and beverage distribution</p>
+                </div>
+            </div>
+
+            <div class="volunteer-cta">
+                <div class="volunteer-text">
+                    <h3>Ready to join our volunteer team?</h3>
+                    <p>Whether you can give a few hours or the whole weekend, we'd love to have you!</p>
+                </div>
+                <a href="#" class="btn" data-translate="sign_up_volunteer">Sign Up to Volunteer</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule of Events Section -->
+    <section id="schedule" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-translate="schedule">Schedule of Events</h2>
+                <p data-translate="schedule_description">Plan your race weekend with our detailed schedule of
+                    activities.</p>
+            </div>
+
+            <div class="schedule-container">
+                <!-- Day 1 -->
+                <div class="schedule-day">
+                    <h3><i class="far fa-calendar-alt"></i> Friday, June 10</h3>
+                    <div class="schedule-events">
+                        <div class="event-item">
+                            <div class="event-time">14:00 - 19:00</div>
+                            <div class="event-details">
+                                <h4>Registration & Packet Pickup</h4>
+                                <p class="event-location"><i class="fas fa-map-marker-alt"></i> Kukës City Hall</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="schedule-day">
+                    <h3><i class="far fa-calendar-alt"></i> Saturday, June 11</h3>
+                    <div class="schedule-events">
+                        <div class="event-item">
+                            <div class="event-time">09:00 - 12:00</div>
+                            <div class="event-details">
+                                <h4>Registration & Packet Pickup</h4>
+                                <p class="event-location"><i class="fas fa-map-marker-alt"></i> Kukës City Hall</p>
+                            </div>
+                        </div>
+                        <div class="event-item highlight">
+                            <div class="event-time">15:00</div>
+                            <div class="event-details">
+                                <h4>Race Briefing <span class="badge">Mandatory</span></h4>
+                                <p class="event-location"><i class="fas fa-map-marker-alt"></i> Start Line</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 3 -->
+                <div class="schedule-day highlight-day">
+                    <h3><i class="fas fa-calendar-day"></i> Sunday, June 12 - Race Day</h3>
+                    <div class="schedule-events">
+                        <div class="event-item">
+                            <div class="event-time">06:00</div>
+                            <div class="event-details">
+                                <h4>Full Marathon Start</h4>
+                                <p class="event-location"><i class="fas fa-map-marker-alt"></i> Start Line</p>
+                            </div>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-time">07:30</div>
+                            <div class="event-details">
+                                <h4>Half Marathon Start</h4>
+                                <p class="event-location"><i class="fas fa-map-marker-alt"></i> Start Line</p>
+                            </div>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-time">08:30</div>
+                            <div class="event-details">
+                                <h4>10K Start</h4>
+                                <p class="event-location"><i class="fas fa-map-marker-alt"></i> Start Line</p>
+                            </div>
+                        </div>
+                        <div class="event-item highlight">
+                            <div class="event-time">12:00</div>
+                            <div class="event-details">
+                                <h4>Awards Ceremony</h4>
+                                <p class="event-location"><i class="fas fa-map-marker-alt"></i> Finish Area</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="schedule-notes">
+                <p><i class="fas fa-info-circle"></i> All times are in local time (GMT+2). Schedule subject to change.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Race Results Section -->
+    <section id="results" class="section-padding bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-translate="race_results">Race Results</h2>
+                <p data-translate="results_description">Check out the official results from our past events.</p>
+            </div>
+
+            <div class="results-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="2025">2025 Results</button>
+                    <!-- <button class="tab-btn" data-tab="2022">2022 Results</button>
+                <button class="tab-btn" data-tab="2021">2021 Results</button> -->
+                </div>
+
+                <div class="tab-content active" id="2025">
+                    <div class="result-categories">
+                        <!-- <div class="result-category">
+                        <h3><i class="fas fa-running"></i> Full Marathon</h3>
+                        <ul class="result-links">
+                            <li><a href="#"><i class="fas fa-medal gold"></i> Men's Results</a></li>
+                            <li><a href="#"><i class="fas fa-medal gold"></i> Women's Results</a></li>
+                            <li><a href="#"><i class="fas fa-trophy"></i> Age Group Results</a></li>
                         </ul>
-                        <a href="#" class="btn">Register Now</a>
+                    </div> -->
+
+                        <div class="result-category">
+                            <h3><i class="fas fa-running"></i> Half Marathon</h3>
+                            <ul class="result-links">
+                                <li><a href="#"><i class="fas fa-medal silver"></i> Men's Results</a></li>
+                                <li><a href="#"><i class="fas fa-medal silver"></i> Women's Results</a></li>
+                                <li><a href="#"><i class="fas fa-trophy"></i> Age Group Results</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="result-category">
+                            <h3><i class="fas fa-running"></i> 10K Run</h3>
+                            <ul class="result-links">
+                                <li><a href="#"><i class="fas fa-medal bronze"></i> Men's Results</a></li>
+                                <li><a href="#"><i class="fas fa-medal bronze"></i> Women's Results</a></li>
+                                <li><a href="#"><i class="fas fa-trophy"></i> Age Group Results</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    
-                    <div class="pricing-tier popular">
-                        <h3 class="tier-name">Standard</h3>
-                        <div class="tier-price">€45</div>
-                        <ul class="tier-features">
-                            <li><i class="fas fa-check"></i> Jan 1 - Mar 31, 2026</li>
-                            <li><i class="fas fa-check"></i> Race Entry</li>
-                            <li><i class="fas fa-check"></i> Race Shirt</li>
-                            <li><i class="fas fa-check"></i> Finisher Medal</li>
-                        </ul>
-                        <a href="#" class="btn">Register Now</a>
-                    </div>
-                    
-                    <div class="pricing-tier">
-                        <h3 class="tier-name">Late Registration</h3>
-                        <div class="tier-price">€55</div>
-                        <ul class="tier-features">
-                            <li><i class="fas fa-check"></i> After Apr 1, 2026</li>
-                            <li><i class="fas fa-check"></i> Race Entry</li>
-                            <li><i class="fas fa-check"></i> Race Shirt (while supplies last)</li>
-                            <li><i class="fas fa-check"></i> Finisher Medal</li>
-                        </ul>
-                        <a href="#" class="btn">Register Now</a>
-                    </div>
+                </div>
+
+                <!-- <div class="tab-content" id="2022">
+                <div class="result-categories">-->
+                <!-- Similar structure as 2023 content -->
+                <!--<p>2022 results will be displayed here</p>
+                </div>
+            </div>
+
+            <div class="tab-content" id="2021">
+                <div class="result-categories">-->
+                <!-- Similar structure as 2023 content -->
+                <!-- <p>2021 results will be displayed here</p>
+                </div>
+            </div> -->
+            </div>
+
+            <div class="results-cta">
+                <p>Can't find your results? <a href="#">Contact our timing team</a> for assistance.</p>
+            </div>
+        </div>
+    </section>
+    <section class="countdown-section">
+        <div class="countdown-container">
+            <h2 class="countdown-title">Countdown to Kukës Marathon 2026</h2>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- FAQ Section -->
-    <section class="faq-section">
+    <!-- Newsletter Section -->
+    <section class="newsletter">
         <div class="container">
-            <div class="faq-container">
-                <h2>Frequently Asked Questions</h2>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        What is the minimum age to participate? <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Participants must be at least 16 years old on race day to compete in the Half Marathon.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Is there a bag check available? <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, we provide a secure bag check service at the start/finish area. Please use the clear bag provided at packet pickup.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Are headphones allowed during the race? <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>For your safety and the safety of others, we recommend against using headphones. If you choose to wear them, please keep the volume low and remain aware of your surroundings.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        What is the refund policy? <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Entry fees are non-refundable and non-transferable. This policy applies to all participants regardless of circumstances.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Will there be pace groups? <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, we will have pace leaders for the following finish times: 1:45, 2:00, 2:15, 2:30, and 2:45.</p>
-                    </div>
-                </div>
-            </div>
+            <h2 data-translate="stay_updated">Stay Updated</h2>
+            <p data-translate="newsletter_description">Subscribe to our newsletter for event announcements, training
+                tips, and exclusive offers.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" data-translate="email_placeholder" required>
+                <button type="submit" data-translate="subscribe">Subscribe</button>
+            </form>
         </div>
     </section>
 
@@ -860,8 +440,9 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>RunNation</h3>
-                    <p>Creating unforgettable running experiences since 2025. Join our community of passionate runners today.</p>
+                    <h3>Kukës Marathon</h3>
+                    <p data-translate="footer_description">Creating unforgettable running experiences since 2025. Join
+                        our community of passionate runners today.</p>
                     <br>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -872,42 +453,455 @@
                 </div>
 
                 <div class="footer-column">
-                    <h3>Quick Links</h3>
+                    <h3 data-translate="quick_links">Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Events</a></li>
-                        <li><a href="#">Training Plans</a></li>
-                        <li><a href="#">Charities</a></li>
-                        <li><a href="#">Results</a></li>
+                        <li><a href="#" data-translate="home">Home</a></li>
+                        <li><a href="#" data-translate="events">Events</a></li>
+                        <li><a href="#" data-translate="training_plans">Training Plans</a></li>
+                        <li><a href="#" data-translate="charities">Charities</a></li>
+                        <li><a href="#" data-translate="results">Results</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
-                    <h3>Events</h3>
+                    <h3 data-translate="events">Events</h3>
                     <ul class="footer-links">
-                        <li><a href="#">5K Runs</a></li>
-                        <li><a href="#">10K Runs</a></li>
-                        <li><a href="#">Half Marathons</a></li>
-                        <li><a href="#">Marathons</a></li>
-                        <li><a href="#">Trail Runs</a></li>
+                        <li><a href="#" data-translate="5k_runs">5K Runs</a></li>
+                        <li><a href="#" data-translate="10k_runs">10K Runs</a></li>
+                        <li><a href="#" data-translate="half_marathons">Half Marathons</a></li>
+                        <li><a href="#" data-translate="marathons">Marathons</a></li>
+                        <li><a href="#" data-translate="trail_runs">Trail Runs</a></li>
                     </ul>
                 </div>
+
+                <!--<div class="footer-column">
+                    <h3 data-translate="support">Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-translate="faqs">FAQs</a></li>
+                        <li><a href="#" data-translate="contact_us">Contact Us</a></li>
+                        <li><a href="#" data-translate="terms">Terms & Conditions</a></li>
+                        <li><a href="#" data-translate="privacy">Privacy Policy</a></li>
+                        <li><a href="#" data-translate="cookies">Cookie Policy</a></li>
+                    </ul>
+                </div>-->
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2024 Kukës Marathon. All rights reserved.</p>
+                <p>&copy; 2024 Kukës Marathon. <span data-translate="all_rights">All rights reserved.</span></p>
             </div>
         </div>
     </footer>
+    <button class="back-to-top" id="backToTop" title="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <script>
+        // Random background functionality
+        function setRandomBackground() {
+            // List of available media - replace with your actual images and videos
+            const mediaItems = [
+                {
+                    type: 'image',
+                    url: 'fierza.jpg'
+                },
+                {
+                    type: 'image',
+                    url: 'view.jpg'
+                },
+                {
+                    type: 'image',
+                    url: 'https://scontent.ftia18-2.fna.fbcdn.net/v/t51.75761-15/500931399_17870556069368973_8310770366559715058_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFkfjxgQNOoNc-2ZFV4BUMl6bD3Fz13ANPpsPcXPXcA06Uok7if4Z99v3uOLJRPgOHC0BP1tP_YkG3YeTJLBBng&_nc_ohc=mJBosKs_V1UQ7kNvwGDE7ZH&_nc_oc=AdnlNLjoHhB_UqTdr21XEU-gn-RjdrJLEKe5qaKWPGkzNXKzbo_F682ZwNlxfVAaWGg&_nc_zt=23&_nc_ht=scontent.ftia18-2.fna&_nc_gid=wXBQrt2Z6-v82NDZABhqAQ&oh=00_AfZaNI48BIuxCq2ERuZU_y0g-70rHznEMNLi8aAomC_BCA&oe=68C60238'
+                },
+                {
+                    type: 'image',
+                    url: 'https://prapaskena.com/wp-content/uploads/2025/05/a97afc43-5dcb-44a0-817b-f1cb2251de91.jpeg'
+                },
+                {
+                    type: 'video',
+                    url: 'cute.mp4'
+                }
+            ];
+
+            // Select a random media item
+            const randomIndex = Math.floor(Math.random() * mediaItems.length);
+            const selectedMedia = mediaItems[randomIndex];
+
+            const heroBackground = document.getElementById('heroBackground');
+
+            // Clear previous content
+            heroBackground.innerHTML = '';
+
+            // Create and append the new media element
+            if (selectedMedia.type === 'image') {
+                const img = document.createElement('img');
+                img.src = selectedMedia.url;
+                img.alt = 'Running background';
+                heroBackground.appendChild(img);
+            } else if (selectedMedia.type === 'video') {
+                const video = document.createElement('video');
+                video.src = selectedMedia.url;
+                video.autoplay = true;
+                video.loop = true;
+                video.muted = true;
+                video.playsInline = true;
+                video.style.objectFit = 'cover';
+                heroBackground.appendChild(video);
+            }
+        }
+
+        // Set random background when page loads
+        document.addEventListener('DOMContentLoaded', setRandomBackground);
+
+        // Countdown functionality
+        function updateCountdown() {
+            const targetDate = new Date('June 16, 2026 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            // Time calculations
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display results
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+
+            // If the countdown is over
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('countdown').innerHTML = '<div class="countdown-ended">The event has started!</div>';
+            }
+        }
+
+        // Initialize countdown
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
+
+        // Back to Top functionality
+        const backToTopButton = document.getElementById('backToTop');
+
+        // Show or hide button when scrolling
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        // When button is clicked, scroll to top of page
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 
     <script>
-        // FAQ functionality
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const item = question.parentElement;
-                item.classList.toggle('active');
+        // Translation Data
+        const translations = {
+            en: {
+                hero_title: "Challenge Yourself With Our Premier Running Events",
+                hero_subtitle: "Join thousands of runners in our world-class events across the country. Whether you're a beginner or an elite athlete, we have the perfect race for you.",
+                view_events: "View Events",
+                register_now: "Register Now",
+                upcoming_events: "Upcoming Events",
+                events_description: "Discover your next running challenge with our selection of premier events across various locations and distances.",
+                all_events: "All Events",
+                "5k_runs": "5K Runs",
+                "10k_runs": "10K Runs",
+                half_marathon: "Half Marathon",
+                marathon: "Marathon",
+                event1_title: "Metropolitan Marathon",
+                event1_description: "Experience the ultimate urban running challenge through the heart of the city with spectacular views and enthusiastic crowd support.",
+                event1_location: "New York City",
+                event2_title: "Coastal Half Marathon",
+                event2_description: "Run along breathtaking coastal views with ocean breezes pushing you forward in this unforgettable half marathon experience.",
+                event2_location: "San Diego",
+                event3_title: "Trailblazer 10K",
+                event3_description: "Challenge yourself on scenic trails through forests and hills in this exciting off-road running adventure.",
+                event3_location: "Boulder, CO",
+                register: "Register",
+                view_all_events: "View All Events",
+                stay_updated: "Stay Updated",
+                newsletter_description: "Subscribe to our newsletter for event announcements, training tips, and exclusive offers.",
+                email_placeholder: "Enter your email address",
+                subscribe: "Subscribe",
+                footer_description: "Creating unforgettable running experiences since 2010. Join our community of passionate runners today.",
+                quick_links: "Quick Links",
+                home: "Home",
+                events: "Events",
+                training_plans: "Training Plans",
+                charities: "Charities",
+                results: "Results",
+                support: "Support",
+                faqs: "FAQs",
+                contact_us: "Contact Us",
+                terms: "Terms & Conditions",
+                privacy: "Privacy Policy",
+                cookies: "Cookie Policy",
+                all_rights: "All rights reserved."
+            },
+            es: {
+                hero_title: "Desafíate con nuestros eventos de running de primer nivel",
+                hero_subtitle: "Únete a miles de corredores en nuestros eventos de clase mundial en todo el país. Ya seas principiante o atleta de élite, tenemos la carrera perfecta para ti.",
+                view_events: "Ver Eventos",
+                register_now: "Regístrate Ahora",
+                upcoming_events: "Próximos Eventos",
+                events_description: "Descubre tu próximo desafío de running con nuestra selección de eventos principales en varias ubicaciones y distancias.",
+                all_events: "Todos los Eventos",
+                "5k_runs": "Carreras 5K",
+                "10k_runs": "Carreras 10K",
+                half_marathon: "Media Maratón",
+                marathon: "Maratón",
+                event1_title: "Maratón Metropolitano",
+                event1_description: "Vive el desafío definitivo de running urbano a través del corazón de la ciudad con vistas espectaculares y el apoyo entusiasta del público.",
+                event1_location: "Nueva York",
+                event2_title: "Media Maratón Costera",
+                event2_description: "Corre junto a impresionantes vistas costeras con brisas marinas que te empujan hacia adelante en esta inolvidable experiencia de media maratón.",
+                event2_location: "San Diego",
+                event3_title: "Trailblazer 10K",
+                event3_description: "Desafíate en pintorescos senderos a través de bosques y colinas en esta emocionante aventura de running fuera de carretera.",
+                event3_location: "Boulder, CO",
+                register: "Registrarse",
+                view_all_events: "Ver Todos los Eventos",
+                stay_updated: "Mantente Actualizado",
+                newsletter_description: "Suscríbete a nuestro boletín para anuncios de eventos, consejos de entrenamiento y ofertas exclusivas.",
+                email_placeholder: "Ingresa tu dirección de correo",
+                subscribe: "Suscribirse",
+                footer_description: "Creando experiencias de running inolvidables desde 2010. Únete a nuestra comunidad de apasionados corredores hoy.",
+                quick_links: "Enlaces Rápidos",
+                home: "Inicio",
+                events: "Eventos",
+                training_plans: "Planes de Entrenamiento",
+                charities: "Organizaciones Benéficas",
+                results: "Resultados",
+                support: "Soporte",
+                faqs: "Preguntas Frecuentes",
+                contact_us: "Contáctanos",
+                terms: "Términos y Condiciones",
+                privacy: "Política de Privacidad",
+                cookies: "Política de Cookies",
+                all_rights: "Todos los derechos reservados."
+            },
+            fr: {
+                hero_title: "Défiez-vous avec nos événements de course de premier ordre",
+                hero_subtitle: "Rejoignez des milliers de coureurs dans nos événements de classe mondiale à travers le pays. Que vous soyez débutant ou athlète d'élite, nous avons la course parfaite pour vous.",
+                view_events: "Voir les Événements",
+                register_now: "S'inscrire Maintenant",
+                upcoming_events: "Événements à Venir",
+                events_description: "Découvrez votre prochain défi de course avec notre sélection d'événements principaux dans divers lieux et distances.",
+                all_events: "Tous les Événements",
+                "5k_runs": "Courses 5K",
+                "10k_runs": "Courses 10K",
+                half_marathon: "Demi-Marathon",
+                marathon: "Marathon",
+                event1_title: "Marathon Métropolitain",
+                event1_description: "Vivez le défi ultime de course urbaine à travers le cœur de la ville avec des vues spectaculaires et le soutien enthousiaste de la foule.",
+                event1_location: "New York",
+                event2_title: "Demi-Marathon Côtier",
+                event2_description: "Courez le long de vues côtières à couper le souffle avec des brises océaniques qui vous poussent vers l'avant dans cette expérience inoubliable de demi-marathon.",
+                event2_location: "San Diego",
+                event3_title: "Trailblazer 10K",
+                event3_description: "Défiez-vous sur des sentiers pittoresques à travers forêts et collines dans cette aventure passionnante de course hors route.",
+                event3_location: "Boulder, CO",
+                register: "S'inscrire",
+                view_all_events: "Voir Tous les Événements",
+                stay_updated: "Restez Informé",
+                newsletter_description: "Abonnez-vous à notre newsletter pour les annonces d'événements, des conseils d'entraînement et des offres exclusives.",
+                email_placeholder: "Entrez votre adresse email",
+                subscribe: "S'abonner",
+                footer_description: "Créant des expériences de course inoubliables depuis 2010. Rejoignez notre communauté de coureurs passionnés aujourd'hui.",
+                quick_links: "Liens Rapides",
+                home: "Accueil",
+                events: "Événements",
+                training_plans: "Plans d'Entraînement",
+                charities: "Organismes de Bienfaisance",
+                results: "Résultats",
+                support: "Support",
+                faqs: "FAQ",
+                contact_us: "Contactez-Nous",
+                terms: "Conditions Générales",
+                privacy: "Politique de Confidentialité",
+                cookies: "Politique de Cookies",
+                all_rights: "Tous droits réservés."
+            }
+        };
+
+        // Current language
+        let currentLang = 'en';
+
+        // Function to change language
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.querySelector('.language-btn img').src = `https://flagcdn.com/w20/${lang === 'en' ? 'gb' : lang}.png`;
+            document.querySelector('.language-btn').innerHTML = `
+                <img src="https://flagcdn.com/w20/${lang === 'en' ? 'gb' : lang}.png" alt="${lang}">
+                ${lang === 'en' ? 'English' : lang === 'es' ? 'Español' : 'Français'}
+            `;
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+        }
+
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const navItems = document.querySelectorAll('.nav-links li');
+
+        hamburger.addEventListener('click', () => {
+            // Toggle nav
+            navLinks.classList.toggle('open');
+            hamburger.classList.toggle('toggle');
+
+            // Animate links
+            navItems.forEach((link, index) => {
+                if (link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                }
+            });
+        });
+
+        // Language selector functionality
+        document.querySelectorAll('.language-dropdown a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const lang = link.getAttribute('data-lang');
+                changeLanguage(lang);
+            });
+        });
+
+        // Simple filter functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const eventCards = document.querySelectorAll('.event-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    const filterValue = button.getAttribute('data-filter');
+
+                    // Filter events
+                    eventCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+        // Add to calendar functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            // Calendar event data (update with your actual event details)
+            const eventData = {
+                title: "RunNation Marathon Event",
+                description: "Join us for the premier running event in the Albanian Alps!",
+                location: "Kukës, Albania",
+                startTime: "2023-06-10T06:00:00",
+                endTime: "2023-06-10T14:00:00"
+            };
+
+            // Generate calendar links
+            document.querySelectorAll('.calendar-option').forEach(option => {
+                option.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const calendarType = this.getAttribute('data-calendar');
+                    let calendarUrl;
+
+                    const startDate = new Date(eventData.startTime).toISOString().replace(/-|:|\.\d+/g, '');
+                    const endDate = new Date(eventData.endTime).toISOString().replace(/-|:|\.\d+/g, '');
+
+                    switch (calendarType) {
+                        case 'google':
+                            calendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventData.title)}&dates=${startDate}/${endDate}&details=${encodeURIComponent(eventData.description)}&location=${encodeURIComponent(eventData.location)}`;
+                            window.open(calendarUrl, '_blank');
+                            break;
+                        case 'apple':
+                            calendarUrl = `data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:${startDate}%0ADTEND:${endDate}%0ASUMMARY:${encodeURIComponent(eventData.title)}%0ADESCRIPTION:${encodeURIComponent(eventData.description)}%0ALOCATION:${encodeURIComponent(eventData.location)}%0AEND:VEVENT%0AEND:VCALENDAR`;
+                            window.location.href = calendarUrl;
+                            break;
+                        case 'outlook':
+                            calendarUrl = `https://outlook.live.com/owa/?path=/calendar/action/compose&rru=addevent&subject=${encodeURIComponent(eventData.title)}&startdt=${eventData.startTime}&enddt=${eventData.endTime}&body=${encodeURIComponent(eventData.description)}&location=${encodeURIComponent(eventData.location)}`;
+                            window.open(calendarUrl, '_blank');
+                            break;
+                        case 'ics':
+                            const icsContent = [
+                                'BEGIN:VCALENDAR',
+                                'VERSION:2.0',
+                                'BEGIN:VEVENT',
+                                `DTSTART:${startDate}`,
+                                `DTEND:${endDate}`,
+                                `SUMMARY:${eventData.title}`,
+                                `DESCRIPTION:${eventData.description}`,
+                                `LOCATION:${eventData.location}`,
+                                'END:VEVENT',
+                                'END:VCALENDAR'
+                            ].join('\n');
+
+                            const blob = new Blob([icsContent], { type: 'text/calendar' });
+                            const url = URL.createObjectURL(blob);
+                            const link = document.createElement('a');
+                            link.href = url;
+                            link.setAttribute('download', 'runnation-event.ics');
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                            break;
+                    }
+                });
+            });
+        });
+        // Mobile dropdown toggle
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdownToggles = document.querySelectorAll('.nav-dropdown > .nav-link');
+
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function (e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const dropdown = this.parentElement;
+                        dropdown.classList.toggle('active');
+
+                        // Close other dropdowns
+                        document.querySelectorAll('.nav-dropdown').forEach(item => {
+                            if (item !== dropdown) {
+                                item.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function (e) {
+                if (window.innerWidth <= 768 && !e.target.closest('.nav-dropdown')) {
+                    document.querySelectorAll('.nav-dropdown').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                }
             });
         });
     </script>
 </body>
+
 </html>
