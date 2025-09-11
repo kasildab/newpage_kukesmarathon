@@ -14,6 +14,14 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        #register_now {
+            background-color: #d7202c;
+        }
+
+        #register_now:hover {
+            background-color: rgb(168, 34, 34);
+        }
+
         .back-to-top {
             position: fixed;
             bottom: 30px;
